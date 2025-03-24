@@ -1,10 +1,9 @@
-import React, { useEffect, useMemo } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { fetchTenantConfig } from './app/feature/tenant/tenantThunks'
-import ProtectedRoute from './components/protectedRoute'
-import SideNavLayout from './Layouts/SideNavLayout'
-import TopNavLayout from './Layouts/TopNavLayout'
+import ProtectedRoute from './components/ProtectedRoute'
+import DashboardLayout from './Layouts/DashboardLayout'
 import LoginPage from './pages/LoginPage'
 
 const App = () => {
@@ -14,11 +13,6 @@ const App = () => {
     useEffect(() => {
         dispatch(fetchTenantConfig())
     }, [dispatch])
-
-    const Layout = useMemo(
-        () => (config?.layout === 'side-nav' ? SideNavLayout : TopNavLayout),
-        [config]
-    )
 
     if (loading) {
         return (
@@ -53,19 +47,9 @@ const App = () => {
                 path='/'
                 element={
                     <ProtectedRoute>
-                        <Layout>
+                        <DashboardLayout>
                             <div>Dashboard</div>
-                        </Layout>
-                    </ProtectedRoute>
-                }
-            />
-            <Route
-                path='/admin'
-                element={
-                    <ProtectedRoute>
-                        <Layout>
-                            <div>Admin</div>
-                        </Layout>
+                        </DashboardLayout>
                     </ProtectedRoute>
                 }
             />

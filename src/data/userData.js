@@ -1,16 +1,6 @@
 const userData = [
-    {
-        username: 'tenantOne',
-        password: 'password123',
-        role: 'admin',
-        tenant: 'TenantOne',
-    },
-    {
-        username: 'tenantTwo',
-        password: 'password456',
-        role: 'user',
-        tenant: 'TenantTwo',
-    },
+    { email: 'admin@gmail.com', role: 'admin' },
+    { email: 'user@gmail.com', role: 'user' },
 ]
 
 export default userData

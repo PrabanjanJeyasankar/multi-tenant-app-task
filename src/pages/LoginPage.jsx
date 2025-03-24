@@ -5,36 +5,31 @@ import { loginUser } from '../app/feature/authentication/authenticationThunks'
 import LoginForm from '../components/LoginComponents/LoginForm'
 
 const LoginPage = () => {
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [role, setRole] = useState('user')
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {
-        loading,
-        error,
-        isAuthenticated,
-        role: userRole,
-    } = useSelector((state) => state.auth)
+    const { loading, error, isAuthenticated, role } = useSelector(
+        (state) => state.auth
+    )
     const { config } = useSelector((state) => state.tenant)
 
     useEffect(() => {
         if (isAuthenticated) {
-            // Redirect based on user role
-            if (userRole === 'admin') {
-                navigate('/admin-dashboard')
-            } else {
-                navigate('/user-dashboard')
-            }
+            // const subdomain = window.location.hostname.split('.')[0]
+            const subdomain = 'tenant1'
+            navigate('/', {
+                state: { layout: subdomain === 'tenant1' ? 'side' : 'top' },
+            })
         }
-    }, [isAuthenticated, userRole, navigate])
+    }, [isAuthenticated, role, navigate])
 
     if (!config) return <div>Loading tenant configuration...</div>
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        dispatch(loginUser({ username, password, role }))
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        dispatch(loginUser({ email, password }))
     }
 
     return (
@@ -51,12 +46,10 @@ const LoginPage = () => {
                     </h2>
                 </div>
                 <LoginForm
-                    username={username}
-                    setUsername={setUsername}
+                    email={email}
+                    setEmail={setEmail}
                     password={password}
                     setPassword={setPassword}
-                    role={role}
-                    setRole={setRole}
                     loading={loading}
                     error={error}
                     primaryColor={config.theme.primary}

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { fetchAuthState, loginUser } from './authenticationThunks'
+import { loginUser } from './authenticationThunks'
 
 const initialState = {
     isAuthenticated: false,
@@ -19,7 +19,6 @@ const authenticationSlice = createSlice({
             state.role = null
             state.loading = false
             state.error = null
-            localStorage.removeItem('authState')
         },
     },
     extraReducers: (builder) => {
@@ -34,7 +33,6 @@ const authenticationSlice = createSlice({
                 state.role = action.payload.role
                 state.loading = false
                 state.error = null
-                localStorage.setItem('authState', JSON.stringify(state))
             })
             .addCase(loginUser.rejected, (state, action) => {
                 state.isAuthenticated = false
@@ -42,9 +40,6 @@ const authenticationSlice = createSlice({
                 state.role = null
                 state.loading = false
                 state.error = action.payload
-            })
-            .addCase(fetchAuthState.fulfilled, (state, action) => {
-                return action.payload
             })
     },
 })

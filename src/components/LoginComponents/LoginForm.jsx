@@ -1,39 +1,92 @@
-import InputField from '../InputFields'
+import { AtSign, Fingerprint } from 'lucide-react'
+import { useState } from 'react'
+import {
+    validateEmail,
+    validatePassword,
+} from '../../utils/loginFieldValidations'
+import InputField from '../InputField'
 import LoginButton from './LoginButton'
-import SelectField from './SelectField'
 
 function LoginForm({
-    username,
-    setUsername,
+    email,
+    setEmail,
     password,
     setPassword,
-    role,
-    setRole,
     loading,
     error,
     primaryColor,
     handleSubmit,
 }) {
+    const [errors, setErrors] = useState({})
+    const [formSubmitted, setFormSubmitted] = useState(false)
+
+    const handleFormSubmit = (event) => {
+        event.preventDefault()
+        setFormSubmitted(true)
+
+        const emailError = validateEmail(email)
+        const passwordError = validatePassword(password)
+
+        setErrors({ email: emailError, password: passwordError })
+
+        if (emailError || passwordError) return
+
+        handleSubmit(event)
+    }
+
+    const handleEmailChange = (val) => {
+        setEmail(val)
+        if (formSubmitted) {
+            setErrors((prev) => ({
+                ...prev,
+                email: validateEmail(val),
+            }))
+        }
+    }
+
+    const handlePasswordChange = (val) => {
+        setPassword(val)
+        if (formSubmitted) {
+            setErrors((prev) => ({
+                ...prev,
+                password: validatePassword(val),
+            }))
+        }
+    }
+
+    const clearEmailError = () => {
+        setErrors((prev) => ({ ...prev, email: '' }))
+    }
+
+    const clearPasswordError = () => {
+        setErrors((prev) => ({ ...prev, password: '' }))
+    }
+
     return (
-        <form className='mt-12' onSubmit={handleSubmit}>
+        <form className='mt-12' onSubmit={handleFormSubmit} noValidate>
             <div className='rounded-md'>
                 <InputField
-                    id='username'
-                    type='text'
-                    placeholder='Username'
-                    value={username}
-                    onChange={setUsername}
-                    autoComplete='username'
+                    id='email'
+                    type='email'
+                    placeholder='Email'
+                    value={email}
+                    onChange={handleEmailChange}
+                    onFocus={clearEmailError}
+                    autoComplete='email'
+                    icon={<AtSign size={18} />}
+                    error={errors.email}
                 />
                 <InputField
                     id='password'
                     type='password'
                     placeholder='Password'
                     value={password}
-                    onChange={setPassword}
+                    onChange={handlePasswordChange}
+                    onFocus={clearPasswordError}
                     autoComplete='current-password'
+                    icon={<Fingerprint size={18} />}
+                    error={errors.password}
                 />
-                <SelectField value={role} onChange={setRole} />
             </div>
 
             <LoginButton loading={loading} primaryColor={primaryColor} />

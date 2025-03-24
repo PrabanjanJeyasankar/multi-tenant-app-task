@@ -1,38 +1,27 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../../../config/firebaseConfig'
 
-export const fetchAuthState = createAsyncThunk(
-    'auth/fetchAuthState',
-    async () => {
-        const savedAuthState = localStorage.getItem('authState')
-        return savedAuthState
-            ? JSON.parse(savedAuthState)
-            : { isAuthenticated: false, user: null, role: null }
-    }
-)
+import userData from '../../../data/userData'
 
 export const loginUser = createAsyncThunk(
     'auth/loginUser',
-    async ({ username, password, role }, { rejectWithValue }) => {
+    async ({ email, password }, { rejectWithValue }) => {
         try {
-            await new Promise((resolve) => setTimeout(resolve, 1000))
+            const userCredential = await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            )
+            const user = userCredential.user
 
-            const users = [
-                { username: 'admin', password: 'admin123', role: 'admin' },
-                { username: 'user', password: 'user123', role: 'user' },
-            ]
-
-            const user = users.find(
-                (u) =>
-                    u.username === username &&
-                    u.password === password &&
-                    u.role === role
+            const matchedUser = userData.find(
+                (userItem) => userItem.email === user.email
             )
 
-            if (user) {
-                return { user: { username }, role: user.role }
-            } else {
-                throw new Error('Invalid username, password, or role')
-            }
+            const role = matchedUser ? matchedUser.role : 'user'
+
+            return { user: { email: user.email }, role }
         } catch (error) {
             return rejectWithValue(error.message)
         }
