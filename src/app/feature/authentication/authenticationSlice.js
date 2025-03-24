@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 import { loginUser } from './authenticationThunks'
 
 const initialState = {
-    isAuthenticated: false,
-    user: null,
-    role: null,
+    isAuthenticated: localStorage.getItem('isAuthenticated') === 'true',
+    user: JSON.parse(localStorage.getItem('user')) || null,
+    role: localStorage.getItem('role') || null,
     loading: false,
     error: null,
 }
@@ -19,6 +19,9 @@ const authenticationSlice = createSlice({
             state.role = null
             state.loading = false
             state.error = null
+            localStorage.removeItem('isAuthenticated')
+            localStorage.removeItem('user')
+            localStorage.removeItem('role')
         },
     },
     extraReducers: (builder) => {
@@ -33,6 +36,12 @@ const authenticationSlice = createSlice({
                 state.role = action.payload.role
                 state.loading = false
                 state.error = null
+                localStorage.setItem('isAuthenticated', 'true')
+                localStorage.setItem(
+                    'user',
+                    JSON.stringify(action.payload.user)
+                )
+                localStorage.setItem('role', action.payload.role)
             })
             .addCase(loginUser.rejected, (state, action) => {
                 state.isAuthenticated = false
