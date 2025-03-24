@@ -35,7 +35,7 @@ const SideNavBarComponent = () => {
                             }`
                         }>
                         <Home className='mr-2 text-gray-500' size={18} />
-                        Home
+                        Dashboard
                     </NavLink>
                 </li>
                 <li>

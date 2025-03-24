@@ -6,7 +6,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import NavigationLayout from './Layouts/NavigationLayout'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
-import HomePage from './pages/HomePage'
+import DashBoardPage from './pages/DashBoardPage'
 import LoginPage from './pages/LoginPage'
 
 const App = () => {
@@ -43,7 +43,7 @@ const App = () => {
             <Route path='/login' element={<LoginPage />} />
             <Route element={<ProtectedRoute />}>
                 <Route path='/' element={<NavigationLayout />}>
-                    <Route index element={<HomePage />} />
+                    <Route index element={<DashBoardPage />} />
                     <Route path='about' element={<AboutPage />} />
                     <Route path='contact' element={<ContactPage />} />
                 </Route>

@@ -32,7 +32,7 @@ const TopNavBarComponent = () => {
                         className={({ isActive }) =>
                             isActive ? 'text-blue-600' : 'text-gray-700'
                         }>
-                        Home
+                        Dashboard
                     </NavLink>
                     <NavLink
                         to='/about'
