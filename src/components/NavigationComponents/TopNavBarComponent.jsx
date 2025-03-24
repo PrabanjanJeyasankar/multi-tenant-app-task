@@ -5,6 +5,7 @@ import { logout } from '../../app/feature/authentication/authenticationSlice'
 
 const TopNavBarComponent = () => {
     const { config } = useSelector((state) => state.tenant)
+    const role = useSelector((state) => state.auth.role)
     const dispatch = useDispatch()
 
     const handleLogout = () => {
@@ -13,7 +14,7 @@ const TopNavBarComponent = () => {
     }
 
     return (
-        <nav className='bg-white w-full font-Inter'>
+        <nav className='bg-white w-full '>
             <div className='container mx-auto py-6 flex items-center justify-between'>
                 <div className='flex items-center space-x-3'>
                     <img
@@ -48,6 +49,15 @@ const TopNavBarComponent = () => {
                         }>
                         Contact
                     </NavLink>
+                    {role === 'admin' && (
+                        <NavLink
+                            to='/admin'
+                            className={({ isActive }) =>
+                                isActive ? 'text-blue-600' : 'text-gray-700'
+                            }>
+                            Admin Panel
+                        </NavLink>
+                    )}
                 </div>
 
                 <button

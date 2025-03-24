@@ -8,6 +8,7 @@ import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 import DashBoardPage from './pages/DashBoardPage'
 import LoginPage from './pages/LoginPage'
+import AdminPage from './pages/AdminPage'
 
 const App = () => {
     const dispatch = useDispatch()
@@ -46,6 +47,7 @@ const App = () => {
                     <Route index element={<DashBoardPage />} />
                     <Route path='about' element={<AboutPage />} />
                     <Route path='contact' element={<ContactPage />} />
+                    <Route path='admin' element={<AdminPage />} />
                 </Route>
             </Route>
             <Route path='*' element={<Navigate to='/' />} />

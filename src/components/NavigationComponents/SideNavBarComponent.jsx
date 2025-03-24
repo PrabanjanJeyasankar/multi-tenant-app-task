@@ -5,6 +5,7 @@ import { logout } from '../../app/feature/authentication/authenticationSlice'
 
 const SideNavBarComponent = () => {
     const { config } = useSelector((state) => state.tenant)
+    const role = useSelector((state) => state.auth.role)
     const dispatch = useDispatch()
 
     const handleLogout = () => {
@@ -13,7 +14,7 @@ const SideNavBarComponent = () => {
     }
 
     return (
-        <nav className='h-screen w-52 bg-white flex flex-col p-4 font-Inter'>
+        <nav className='h-screen w-52 bg-white flex flex-col p-4 '>
             <div className='flex items-center p-4 mb-6'>
                 <img
                     src={config?.logo}
@@ -62,6 +63,20 @@ const SideNavBarComponent = () => {
                         Contact
                     </NavLink>
                 </li>
+                {role === 'admin' && (
+                    <li>
+                        <NavLink
+                            to='/admin'
+                            className={({ isActive }) =>
+                                `flex px-4 py-2 text-gray-700 hover:bg-gray-200 rounded items-center transition-colors duration-300 ${
+                                    isActive ? 'bg-gray-100' : ''
+                                }`
+                            }>
+                            <span className='mr-2 text-gray-500'>⚙️</span>
+                            Admin Panel
+                        </NavLink>
+                    </li>
+                )}
             </ul>
 
             <button

@@ -10,7 +10,7 @@ function DashBoardPage() {
     const isAuthenticated = useSelector(selectIsAuthenticated)
 
     return (
-        <div className='flex flex-col items-center justify-center min-h-[60vh] font-Inter space-y-4'>
+        <div className='flex flex-col items-center justify-center min-h-[60vh]  space-y-4'>
             <h1 className='text-2xl font-bold mb-6'>Dashboard</h1>
 
             {isAuthenticated && role === 'admin' ? (
