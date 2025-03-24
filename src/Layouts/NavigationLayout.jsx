@@ -13,8 +13,6 @@ const NavigationLayout = () => {
     const loading = useSelector(selectTenantLoading)
     const error = useSelector(selectTenantError)
 
-    console.log('Config:', config)
-
     if (loading) {
         return (
             <div className='flex h-screen items-center justify-center'>
@@ -31,13 +29,13 @@ const NavigationLayout = () => {
         )
     }
 
-    const LayoutComponent =
-        config?.layout === 'side-nav' ? SideNavBarComponent : TopNavBarComponent
+    const isSideNav = config?.layout === 'side-nav'
+    const LayoutComponent = isSideNav ? SideNavBarComponent : TopNavBarComponent
 
     return (
-        <div className='h-screen flex flex-col'>
+        <div className={`h-screen flex ${isSideNav ? 'flex-row' : 'flex-col'}`}>
             <LayoutComponent />
-            <div className='flex-grow p-6'>
+            <div className='flex-grow p-6 overflow-auto bg-gray-100'>
                 <Outlet />
             </div>
         </div>

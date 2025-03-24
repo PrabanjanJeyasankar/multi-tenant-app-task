@@ -1,22 +1,22 @@
 {
-  "tenants": {
-    "subdomain1": {
-      "name": "Tenant 1",
-      "logo": "/tenant_1_logo.svg",
-      "theme": {
-        "primary": "#4F46E5",
-        "secondary": "#10B981"
-      },
-      "layout": "side-nav"
-    },
-    "subdomain2": {
-      "name": "Tenant 2",
-      "logo": "/tenant_2_logo.svg",
-      "theme": {
-        "primary": "#D946EF",
-        "secondary": "#F59E0B"
-      },
-      "layout": "top-nav"
+    "tenants": {
+        "subdomain1": {
+            "name": "Tenant 1",
+            "logo": "/tenant_1_logo.svg",
+            "theme": {
+                "primary": "#4F46E5",
+                "secondary": "#10B981"
+            },
+            "layout": "side-nav"
+        },
+        "subdomain2": {
+            "name": "Tenant 2",
+            "logo": "/tenant_2_logo.svg",
+            "theme": {
+                "primary": "#D946EF",
+                "secondary": "#F59E0B"
+            },
+            "layout": "top-nav"
+        }
     }
-  }
 }

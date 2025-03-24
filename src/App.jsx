@@ -16,7 +16,6 @@ const App = () => {
     const error = useSelector((state) => state.tenant.error)
 
     useEffect(() => {
-        console.log('Fetching tenant config...')
         dispatch(fetchTenantConfig())
     }, [dispatch])
 
