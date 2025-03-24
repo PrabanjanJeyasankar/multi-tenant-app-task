@@ -1,15 +1,15 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
-import { Navigate } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
+import { selectIsAuthenticated } from '../app/feature/authentication/authenticationSelectors'
 
-const ProtectedRoute = ({ children }) => {
-    const { isAuthenticated } = useSelector((state) => state.auth)
-
+const ProtectedRoute = () => {
+    const isAuthenticated = useSelector(selectIsAuthenticated)
     const storedAuthState = JSON.parse(localStorage.getItem('authState'))
+
     const userIsAuthenticated =
         isAuthenticated || storedAuthState?.isAuthenticated
 
-    return userIsAuthenticated ? children : <Navigate to='/login' replace />
+    return userIsAuthenticated ? <Outlet /> : <Navigate to='/login' replace />
 }
 
 export default ProtectedRoute
