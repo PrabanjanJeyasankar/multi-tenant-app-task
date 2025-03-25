@@ -7,16 +7,21 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Dependency directories
+node_modules/
+dist/
+dist-ssr/
 *.local
+
+# Environment variables
 .env
+.env.local
+.env.*.local
 
 # Editor directories and files
-.vscode/*
+.vscode/
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
@@ -24,8 +29,25 @@ dist-ssr
 *.sln
 *.sw?
 
-# Playwright
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
+# Playwright test artifacts
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Coverage reports  
+coverage/  
+.nyc_output/  
+lcov-report/  
+lcov.info  
+
+# Babel config (if auto-generated)  
+babel.config.js  
+
+# Firebase logs (if applicable)  
+firebase-debug.log  
+.firebase/
+
+# Miscellaneous (OS & IDE files)
+Thumbs.db
+*.iml

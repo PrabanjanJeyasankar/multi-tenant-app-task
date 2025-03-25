@@ -17,11 +17,7 @@ const LoginPage = () => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            // const subdomain = window.location.hostname.split('.')[0]
-            const subdomain = 'tenant1'
-            navigate('/', {
-                state: { layout: subdomain === 'tenant1' ? 'side' : 'top' },
-            })
+            navigate('/')
         }
     }, [isAuthenticated, role, navigate])
 

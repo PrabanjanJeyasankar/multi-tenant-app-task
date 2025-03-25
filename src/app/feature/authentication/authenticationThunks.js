@@ -3,6 +3,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../../../public/config/firebaseConfig'
 
 import userData from '../../../data/userData'
+import FirebaseAuthErrorMessage from '../../../utils/FirebaseAuthErrorMessage'
 
 export const loginUser = createAsyncThunk(
     'auth/loginUser',
@@ -23,7 +24,7 @@ export const loginUser = createAsyncThunk(
 
             return { user: { email: user.email }, role }
         } catch (error) {
-            return rejectWithValue(error.message)
+            return rejectWithValue(FirebaseAuthErrorMessage(error.code))
         }
     }
 )

@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
 import {
@@ -12,6 +13,19 @@ const NavigationLayout = () => {
     const config = useSelector(selectTenantConfig)
     const loading = useSelector(selectTenantLoading)
     const error = useSelector(selectTenantError)
+
+    useEffect(() => {
+        if (config) {
+            let subdomain = window.location.hostname.split('.')[0]
+
+            if (window.location.hostname.includes('localhost')) {
+                const urlParams = new URLSearchParams(window.location.search)
+                subdomain = urlParams.get('tenant') || 'tenant1'
+            }
+
+            document.title = subdomain === 'tenant1' ? 'Tenant 1' : 'Tenant 2'
+        }
+    }, [config])
 
     if (loading) {
         return (

@@ -2,10 +2,42 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <link rel="icon" type="image/x-icon" href="/deafult_icon.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Multi Tenant App</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                let subdomain = window.location.hostname.split('.')[0]
+
+                if (subdomain === 'tenant1-uxmint' || subdomain === 'tenant1') {
+                    document.title = 'Tenant 1'
+                    setFavicon('/tenant1_logo.svg')
+                } else if (
+                    subdomain === 'tenant2' ||
+                    subdomain === 'tenant2-app'
+                ) {
+                    document.title = 'Tenant 2'
+                    setFavicon('/tenant2_logo.svg')
+                }
+            })
+
+            function setFavicon(iconPath) {
+                document
+                    .querySelectorAll(
+                        "link[rel='icon'], link[rel='shortcut icon']"
+                    )
+                    .forEach((favicon) => {
+                        favicon.remove()
+                    })
+
+                const favicon = document.createElement('link')
+                favicon.rel = 'icon'
+                favicon.type = 'image/x-icon'
+                favicon.href = iconPath + '?v=' + new Date().getTime()
+                document.head.appendChild(favicon)
+            }
+        </script>
     </head>
+
     <body>
         <div id="root"></div>
         <script type="module" src="/src/main.jsx"></script>
