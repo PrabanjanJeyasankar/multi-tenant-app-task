@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import {
@@ -8,8 +9,14 @@ import {
 const ProtectedRoute = () => {
     const isAuthenticated = useSelector(selectIsAuthenticated)
     const role = useSelector(selectRole)
-
     const location = useLocation()
+
+    useEffect(() => {
+        localStorage.setItem(
+            'authState',
+            JSON.stringify({ isAuthenticated, role })
+        )
+    }, [isAuthenticated, role])
 
     const storedAuthState = JSON.parse(localStorage.getItem('authState'))
     const userIsAuthenticated =
