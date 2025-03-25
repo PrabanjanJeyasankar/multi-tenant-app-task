@@ -1,6 +1,6 @@
 {
     "tenants": {
-        "subdomain1": {
+        "tenant1-uxmint": {
             "name": "Tenant 1",
             "logo": "/tenant_1_logo.svg",
             "theme": {
@@ -9,7 +9,7 @@
             },
             "layout": "side-nav"
         },
-        "subdomain2": {
+        "tenant2-uxmint": {
             "name": "Tenant 2",
             "logo": "/tenant_2_logo.svg",
             "theme": {

@@ -1,0 +1,36 @@
+{
+  "hosting": [
+    {
+      "site": "tenant1-uxmint",
+      "public": "dist",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "headers": [
+        {
+          "source": "**/*.js",
+          "headers": [{ "key": "Content-Type", "value": "application/javascript" }]
+        },
+        {
+          "source": "**/*.css",
+          "headers": [{ "key": "Content-Type", "value": "text/css" }]
+        }
+      ],
+      "rewrites": [{ "source": "**", "destination": "/index.html" }]
+    },
+    {
+      "site": "tenant2-uxmint",
+      "public": "dist",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "headers": [
+        {
+          "source": "**/*.js",
+          "headers": [{ "key": "Content-Type", "value": "application/javascript" }]
+        },
+        {
+          "source": "**/*.css",
+          "headers": [{ "key": "Content-Type", "value": "text/css" }]
+        }
+      ],
+      "rewrites": [{ "source": "**", "destination": "/index.html" }]
+    }
+  ]
+}

@@ -22,19 +22,19 @@ const App = () => {
 
     if (loading)
         return (
-            <div className='flex h-screen items-center justify-center'>
+            <div className='flex h-screen items-center justify-center font-Inter'>
                 Loading...
             </div>
         )
     if (error)
         return (
-            <div className='flex h-screen items-center justify-center text-red-600'>
+            <div className='flex h-screen items-center justify-center text-red-600 font-Inter'>
                 Error: {error}
             </div>
         )
     if (!config)
         return (
-            <div className='flex h-screen items-center justify-center'>
+            <div className='flex h-screen items-center justify-center font-Inter'>
                 No tenant configuration found
             </div>
         )

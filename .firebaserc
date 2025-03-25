@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "multi-tenant-uxmint-task"
+  },
+  "targets": {
+    "multi-tenant-uxmint-task": {
+      "hosting": {
+        "tenant2": [
+          "multi-tenant-uxmint-task"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
