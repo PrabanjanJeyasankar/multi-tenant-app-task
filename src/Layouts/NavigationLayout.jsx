@@ -23,7 +23,7 @@ const NavigationLayout = () => {
                 subdomain = urlParams.get('tenant') || 'tenant1'
             }
 
-            document.title = subdomain === 'tenant1' ? 'Tenant 1' : 'Tenant 2'
+            document.title = subdomain === 'tenant1-uxmint' ? 'Tenant 1' : 'Tenant 2'
         }
     }, [config])
 
