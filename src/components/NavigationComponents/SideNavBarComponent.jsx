@@ -14,7 +14,7 @@ const SideNavBarComponent = () => {
     }
 
     return (
-        <nav className='h-screen w-52 bg-white flex flex-col p-4 '>
+        <nav className='h-screen w-52 bg-white flex flex-col p-4 ' id='sideNavigationBar'>
             <div className='flex items-center p-4 mb-6'>
                 <img
                     src={config?.logo}

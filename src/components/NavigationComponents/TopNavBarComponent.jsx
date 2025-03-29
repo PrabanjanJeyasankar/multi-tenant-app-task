@@ -14,7 +14,7 @@ const TopNavBarComponent = () => {
     }
 
     return (
-        <nav className='bg-white w-full '>
+        <nav className='bg-white w-full ' id='topNavigationBar'>
             <div className='container mx-auto py-6 flex items-center justify-between'>
                 <div className='flex items-center space-x-3'>
                     <img
