@@ -3,10 +3,10 @@ import 'dotenv/config'
 
 const TEST_EMAIL = process.env.TEST_EMAIL
 const TEST_PASSWORD = process.env.TEST_PASSWORD
-const TENANT_URL = process.env.TENANT1_URL
+const TENANT_URL = process.env.TENANT2_URL
 
-test.describe('Side Navigation Bar Validation for Tenant 1', () => {
-    test('Login and vavigation validation', async () => {
+test.describe('Top Navigation Bar Validation for Tenant 2', () => {
+    test('Login and navigation validation', async () => {
         const browser = await chromium.launch({ headless: true })
         const page = await browser.newPage()
 
@@ -17,13 +17,13 @@ test.describe('Side Navigation Bar Validation for Tenant 1', () => {
 
         await expect(page).toHaveURL(`${TENANT_URL}/`)
 
-        const sideNavigationBar = page.locator('#sideNavigationBar')
-        await expect(sideNavigationBar).toBeVisible()
+        const navigationBar = page.locator('#topNavigationBar')
+        await expect(navigationBar).toBeVisible()
 
         await browser.close()
     })
 
-    test('Logo validation for side navigation bar for tenant 1', async () => {
+    test('Logo Validation for top navigation bar', async () => {
         const browser = await chromium.launch({ headless: true })
         const page = await browser.newPage()
 
@@ -32,14 +32,14 @@ test.describe('Side Navigation Bar Validation for Tenant 1', () => {
         await page.fill('input[name="password"]', TEST_PASSWORD)
         await page.click('button[type="submit"]')
 
-        const logo = page.locator('#sideNavigationBar img')
+        const logo = page.locator('#topNavigationBar img')
         await expect(logo).toBeVisible()
-        await expect(logo).toHaveAttribute('src', /tenant_1_logo/)
+        await expect(logo).toHaveAttribute('src', /tenant_2_logo/)
 
         await browser.close()
     })
 
-    test('Navigation links validation for side navigation bar', async () => {
+    test('Navigation links validation for top navigation bar', async () => {
         const browser = await chromium.launch({ headless: true })
         const page = await browser.newPage()
 
@@ -56,7 +56,7 @@ test.describe('Side Navigation Bar Validation for Tenant 1', () => {
         await browser.close()
     })
 
-    test('Admin panel visibility validation for side navigation bar', async () => {
+    test('Admin panel visibility validation for top navigation bar', async () => {
         const browser = await chromium.launch({ headless: true })
         const page = await browser.newPage()
 
@@ -73,7 +73,8 @@ test.describe('Side Navigation Bar Validation for Tenant 1', () => {
         await browser.close()
     })
 
-    test('Logout Functionality for side navigation bar', async () => {
+
+    test('Logout functionality for top navigation bar', async () => {
         const browser = await chromium.launch({ headless: true })
         const page = await browser.newPage()
 
