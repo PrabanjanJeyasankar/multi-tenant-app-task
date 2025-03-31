@@ -1,0 +1,14 @@
+{
+  "cookies": [],
+  "origins": [
+    {
+      "origin": "https://tenant1-uxmint.web.app",
+      "localStorage": [
+        {
+          "name": "authState",
+          "value": "{\"isAuthenticated\":false,\"role\":null}"
+        }
+      ]
+    }
+  ]
+}

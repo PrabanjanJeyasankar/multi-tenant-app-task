@@ -69,6 +69,7 @@ function LoginForm({
                     id='email'
                     type='email'
                     placeholder='Email'
+                    name='email'
                     value={email}
                     onChange={handleEmailChange}
                     onFocus={clearEmailError}
@@ -80,6 +81,7 @@ function LoginForm({
                     id='password'
                     type='password'
                     placeholder='Password'
+                    name='password'
                     value={password}
                     onChange={handlePasswordChange}
                     onFocus={clearPasswordError}
